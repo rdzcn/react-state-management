@@ -1,19 +1,21 @@
 import { useState } from "react";
 
 const MyComponent = () => {
-  const [isRed, setIsRed] = useState(false);
-  const [isGreen, setIsGreen] = useState(false);
-  const [isYellow, setIsYellow] = useState(false);
+  const [colors, setColors] = useState({
+    isRed: false,
+    isGreen: false,
+    isYellow: false
+  });
 
   return (
     <div>
       <div
         class={
-          isRed
+          colors.isRed
             ? "my-component-red"
-            : isGreen
+            : colors.isGreen
             ? "my-component-green"
-            : isYellow
+            : colors.isYellow
             ? "my-component-yellow"
             : "my-component"
         }
@@ -21,12 +23,12 @@ const MyComponent = () => {
         <button
           type="button"
           onClick={() => {
-            const nextRedState = !isRed;
-            if (nextRedState) {
-              setIsGreen(false);
-              setIsYellow(false);
-            }
-            setIsRed(nextRedState);
+            const nextRedState = !colors.isRed;
+            setColors({
+                isGreen: nextRedState ? false : colors.isGreen,
+                isYellow: nextRedState ? false : colors.isYellow,
+                isRed: nextRedState
+              });
           }}
         >
           <span role="img" aria-label="bomb">
@@ -36,12 +38,12 @@ const MyComponent = () => {
         <button
           type="button"
           onClick={() => {
-            const nextGreenState = !isGreen;
-            if (nextGreenState) {
-              setIsRed(false);
-              setIsYellow(false);
-            }
-            setIsGreen(nextGreenState);
+            const nextGreenState = !colors.isGreen;
+            setColors({
+                isGreen: nextGreenState,
+                isYellow: nextGreenState ? false : colors.isYellow,
+                isRed: nextGreenState ? false : colors.isRed
+              });
           }}
         >
           <span role="img" aria-label="bomb">
@@ -51,12 +53,12 @@ const MyComponent = () => {
         <button
           type="button"
           onClick={() => {
-            const nextYellowState = !isYellow;
-            if (nextYellowState) {
-              setIsRed(false);
-              setIsGreen(false);
-            }
-            setIsYellow(nextYellowState);
+            const nextYellowState = !colors.isYellow;
+            setColors({
+              isGreen: nextYellowState ? false : colors.isGreen,
+              isYellow: nextYellowState,
+              isRed: nextYellowState ? false : colors.isRed
+            });
           }}
         >
           <span role="img" aria-label="bomb">
@@ -65,12 +67,18 @@ const MyComponent = () => {
         </button>
       </div>
       <div>
-        <pre class="state-value" data-state-value={`isRed: ${isRed}`}></pre>
-        <pre class="state-value" data-state-value={`isGreen: ${isGreen}`}></pre>
         <pre
-          class="state-value"
-          data-state-value={`isYellow: ${isYellow}`}
-        ></pre>
+            class="state-value"
+            data-state-value={`isRed: ${colors.isRed}`}
+          ></pre>
+          <pre
+            class="state-value"
+            data-state-value={`isGreen: ${colors.isGreen}`}
+          ></pre>
+          <pre
+            class="state-value"
+            data-state-value={`isYellow: ${colors.isYellow}`}
+          ></pre>
       </div>
     </div>
   );
