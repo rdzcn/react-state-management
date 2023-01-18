@@ -3,6 +3,7 @@ import { useState } from "react";
 const MyComponent = () => {
   const [isRed, setIsRed] = useState(false);
   const [isGreen, setIsGreen] = useState(false);
+  const [isYellow, setIsYellow] = useState(false);
 
   return (
     <div>
@@ -12,6 +13,8 @@ const MyComponent = () => {
             ? "my-component-red"
             : isGreen
             ? "my-component-green"
+            : isYellow
+            ? "my-component-yellow"
             : "my-component"
         }
       >
@@ -21,6 +24,7 @@ const MyComponent = () => {
             const nextRedState = !isRed;
             if (nextRedState) {
               setIsGreen(false);
+              setIsYellow(false);
             }
             setIsRed(nextRedState);
           }}
@@ -35,6 +39,7 @@ const MyComponent = () => {
             const nextGreenState = !isGreen;
             if (nextGreenState) {
               setIsRed(false);
+              setIsYellow(false);
             }
             setIsGreen(nextGreenState);
           }}
@@ -43,10 +48,29 @@ const MyComponent = () => {
             💣 GREEN
           </span>
         </button>
+        <button
+          type="button"
+          onClick={() => {
+            const nextYellowState = !isYellow;
+            if (nextYellowState) {
+              setIsRed(false);
+              setIsGreen(false);
+            }
+            setIsYellow(nextYellowState);
+          }}
+        >
+          <span role="img" aria-label="bomb">
+            💣 YELLOW
+          </span>
+        </button>
       </div>
       <div>
         <pre class="state-value" data-state-value={`isRed: ${isRed}`}></pre>
         <pre class="state-value" data-state-value={`isGreen: ${isGreen}`}></pre>
+        <pre
+          class="state-value"
+          data-state-value={`isYellow: ${isYellow}`}
+        ></pre>
       </div>
     </div>
   );
