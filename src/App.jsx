@@ -1,13 +1,13 @@
-import { useState } from 'react'
+import MyComponent from "./MyComponent";
 import './App.css'
 
-function App() {
-
+export default function App() {
   return (
     <div className="App">
-      Hello World
+      <h1 style={{ marginBottom: "48px" }}>Hello State Management</h1>
+      <div class="components-container">
+        <MyComponent />
+      </div>
     </div>
-  )
+  );
 }
-
-export default App
