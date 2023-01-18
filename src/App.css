@@ -30,6 +30,15 @@
   background: red;
 }
 
+.App .my-component-green {
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  display: grid;
+  place-items: center;
+  background: green;
+}
+
 .App .state-value::before {
   content: attr(data-state-value);
 }
