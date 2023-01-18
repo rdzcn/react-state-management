@@ -1,4 +1,5 @@
 import MyComponent from "./MyComponent";
+import MyAsyncComponent from "./MyAsyncComponent";
 import './App.css'
 
 export default function App() {
@@ -7,6 +8,7 @@ export default function App() {
       <h1 style={{ marginBottom: "48px" }}>Hello State Management</h1>
       <div class="components-container">
         <MyComponent />
+        <MyAsyncComponent />
       </div>
     </div>
   );
