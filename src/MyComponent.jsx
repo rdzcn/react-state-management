@@ -19,6 +19,9 @@ const MyComponent = () => {
           type="button"
           onClick={() => {
             const nextRedState = !isRed;
+            if (nextRedState) {
+              setIsGreen(false);
+            }
             setIsRed(nextRedState);
           }}
         >
@@ -30,6 +33,9 @@ const MyComponent = () => {
           type="button"
           onClick={() => {
             const nextGreenState = !isGreen;
+            if (nextGreenState) {
+              setIsRed(false);
+            }
             setIsGreen(nextGreenState);
           }}
         >
