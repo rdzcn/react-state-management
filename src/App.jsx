@@ -1,6 +1,7 @@
 import MyComponent from "./MyComponent";
 import MyAsyncComponent from "./MyAsyncComponent";
-import './App.css'
+import "./App.css";
+import MyTwoAsyncComponent from "./MyTwoAsyncComponent";
 
 export default function App() {
   return (
@@ -9,6 +10,7 @@ export default function App() {
       <div class="components-container">
         <MyComponent />
         <MyAsyncComponent />
+        <MyTwoAsyncComponent />
       </div>
     </div>
   );
