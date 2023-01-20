@@ -76,3 +76,41 @@
 .App .json > span {
   margin-bottom: 6px;
 }
+
+.App .deep-child {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 105px;
+  height: 105px;
+}
+
+.App .child-level-1 {
+  width: 100px;
+  height: 100px;
+}
+
+.App .child-level-2 {
+  width: 95px;
+  height: 95px;
+}
+
+.App .child-level-3 {
+  width: 90px;
+  height: 90px;
+}
+
+.App .child-level-4 {
+  width: 85px;
+  height: 85px;
+}
+
+.App .child-level-5 {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+}
