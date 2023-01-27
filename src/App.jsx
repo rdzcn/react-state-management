@@ -1,5 +1,5 @@
-import MyComponent from "./MyComponent";
-import MyAsyncComponent from "./MyAsyncComponent";
+// import MyComponent from "./MyComponent";
+// import MyAsyncComponent from "./MyAsyncComponent";
 import "./App.css";
 import MyTwoAsyncComponent from "./MyTwoAsyncComponent";
 import MyAsyncWithContextComponent from "./MyAsyncWithContextComponent";

@@ -114,3 +114,10 @@
   justify-content: flex-end;
   align-items: start;
 }
+
+.App .the-way-of-water {
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+}
