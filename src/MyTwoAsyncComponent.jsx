@@ -10,12 +10,6 @@ const MyTwoAsyncComponent = () => {
     isYellow: false,
   });
 
-  const [feature, setFeature] = useState({
-    isRed: false,
-    isGreen: false,
-    isYellow: false,
-  });
-
   const getAllColors = async () => {
     const response = await fetchAllColors(4000);
     if (response.error) {
@@ -25,21 +19,11 @@ const MyTwoAsyncComponent = () => {
     return response.data;
   };
 
-  const getFeature = async () => {
-    const response = await fetchFeatureConfig(500);
-    if (response.error) {
-      setError(true);
-      return {};
-    }
-    return response.data;
-  };
-
   useEffect(() => {
     setIsFetchingData(true);
-    Promise.all([getAllColors(), getFeature()])
-      .then(([colors, feature]) => {
+    Promise.all([getAllColors()])
+      .then(([colors]) => {
         setColors(colors);
-        setFeature(feature);
       })
       .finally(() => {
         setIsFetchingData(false);
@@ -116,10 +100,6 @@ const MyTwoAsyncComponent = () => {
           <pre class="json">
             <span>COLORS</span>
             {JSON.stringify(colors, null, 2)}
-          </pre>
-          <pre class="json">
-            <span>Feature</span>
-            {JSON.stringify(feature, null, 2)}
           </pre>
         </div>
       </div>
