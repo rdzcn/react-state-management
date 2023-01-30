@@ -6,7 +6,7 @@ const MyComponent = () => {
   return (
     <div>
       <div
-        class={
+        className={
           isRed
             ? "my-component-red"
             : "my-component"
@@ -25,7 +25,7 @@ const MyComponent = () => {
         </button>
       </div>
       <div>
-        <pre class="state-value" data-state-value={`isRed: ${isRed}`}></pre>
+        <pre className="state-value" data-state-value={`isRed: ${isRed}`}></pre>
       </div>
     </div>
   );
