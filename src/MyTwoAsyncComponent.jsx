@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchAllColors, fetchFeatureConfig } from "./helpers";
+import { fetchAllColors } from "./helpers";
 
 const MyTwoAsyncComponent = () => {
   const [error, setError] = useState(false);
@@ -11,7 +11,7 @@ const MyTwoAsyncComponent = () => {
   });
 
   const getAllColors = async () => {
-    const response = await fetchAllColors(4000);
+    const response = await fetchAllColors(1000);
     if (response.error) {
       setError(true);
       return {};
@@ -31,14 +31,14 @@ const MyTwoAsyncComponent = () => {
   }, []);
 
   if (isFetchingData) {
-    return <div class="my-component" />;
+    return <div className="my-component" />;
   }
 
   return (
     !isFetchingData && (
       <div>
         <div
-          class={
+          className={
             colors.isRed
               ? "my-component-red"
               : colors.isGreen
@@ -48,7 +48,7 @@ const MyTwoAsyncComponent = () => {
               : "my-component"
           }
         >
-          <div class="button-container">
+          <div className="button-container">
             <button
               type="button"
               onClick={() => {
@@ -97,7 +97,7 @@ const MyTwoAsyncComponent = () => {
           </div>
         </div>
         <div>
-          <pre class="json">
+          <pre className="json">
             <span>COLORS</span>
             {JSON.stringify(colors, null, 2)}
           </pre>

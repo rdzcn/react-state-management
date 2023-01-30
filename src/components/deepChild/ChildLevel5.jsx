@@ -30,11 +30,11 @@ export default function ChildLevel5() {
 
   return (
     !isFetchingData && (
-      <div class="child-level-5">
+      <div className="child-level-5">
         {(colors.isRed && feature.isRed) ||
           (colors.isGreen && feature.isGreen) ||
           (colors.isYellow && feature.isYellow && (
-            <div class="corner-feature">
+            <div className="corner-feature">
               <span role="img" aria-label="fire">
                 🔥
               </span>

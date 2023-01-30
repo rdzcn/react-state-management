@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { fetchAllColors } from "./helpers";
+import { fetchAllColors, sleep } from "./helpers";
 import DeepChild from "./components/deepChild/DeepChild";
 
 export const FeatureContext = createContext(null);
@@ -10,7 +10,7 @@ const MyAsyncWithContextComponent = () => {
   const [colors, setColors] = useState({});
 
   const getAllColors = async () => {
-    const response = await fetchAllColors(4000);
+    const response = await fetchAllColors(1000);
     if (response.error) {
       setError(true);
       return {};
@@ -24,6 +24,11 @@ const MyAsyncWithContextComponent = () => {
       .then(([colors]) => {
         setColors(colors);
       })
+      .then(() => {
+        const start = new Date();
+        sleep(3000);
+        console.log("Takes", new Date() - start, " ms");
+      })
       .finally(() => {
         setIsFetchingData(false);
       });
@@ -31,7 +36,7 @@ const MyAsyncWithContextComponent = () => {
 
   if (isFetchingData) {
     return (
-      <div class="my-component">
+      <div className="my-component">
         <h1>...loading</h1>
       </div>
     );
@@ -42,7 +47,7 @@ const MyAsyncWithContextComponent = () => {
       <FeatureContext.Provider value={colors}>
         <div>
           <div
-            class={
+            className={
               colors.isRed
                 ? "my-component-red"
                 : colors.isGreen
@@ -52,10 +57,10 @@ const MyAsyncWithContextComponent = () => {
                 : "my-component"
             }
           >
-            <div class="button-container">
+            <div className="button-container">
               <DeepChild />
               <img
-                class="the-way-of-water"
+                className="the-way-of-water"
                 alt="profile-image"
                 src="https://i.pravatar.cc/100"
               />
@@ -107,7 +112,7 @@ const MyAsyncWithContextComponent = () => {
             </div>
           </div>
           <div>
-            <pre class="json">
+            <pre className="json">
               <span>COLORS</span>
               {JSON.stringify(colors, null, 2)}
             </pre>

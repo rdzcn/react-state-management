@@ -22,7 +22,7 @@ const MyAsyncComponent = () => {
   return (
     <div>
       <div
-        class={
+        className={
           colors.isRed
             ? "my-component-red"
             : colors.isGreen
@@ -80,15 +80,15 @@ const MyAsyncComponent = () => {
       </div>
       <div>
         <pre
-          class="state-value"
+          className="state-value"
           data-state-value={`isRed: ${colors.isRed}`}
         ></pre>
         <pre
-          class="state-value"
+          className="state-value"
           data-state-value={`isGreen: ${colors.isGreen}`}
         ></pre>
         <pre
-          class="state-value"
+          className="state-value"
           data-state-value={`isYellow: ${colors.isYellow}`}
         ></pre>
       </div>
