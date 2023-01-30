@@ -8,7 +8,7 @@ const MyComponent = () => {
   return (
     <div>
       <div
-        class={
+        className={
           isRed
             ? "my-component-red"
             : isGreen
@@ -65,10 +65,10 @@ const MyComponent = () => {
         </button>
       </div>
       <div>
-        <pre class="state-value" data-state-value={`isRed: ${isRed}`}></pre>
-        <pre class="state-value" data-state-value={`isGreen: ${isGreen}`}></pre>
+        <pre className="state-value" data-state-value={`isRed: ${isRed}`}></pre>
+        <pre className="state-value" data-state-value={`isGreen: ${isGreen}`}></pre>
         <pre
-          class="state-value"
+          className="state-value"
           data-state-value={`isYellow: ${isYellow}`}
         ></pre>
       </div>
