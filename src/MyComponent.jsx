@@ -4,13 +4,13 @@ const MyComponent = () => {
   const [colors, setColors] = useState({
     isRed: false,
     isGreen: false,
-    isYellow: false
+    isYellow: false,
   });
 
   return (
     <div>
       <div
-        class={
+        className={
           colors.isRed
             ? "my-component-red"
             : colors.isGreen
@@ -25,10 +25,10 @@ const MyComponent = () => {
           onClick={() => {
             const nextRedState = !colors.isRed;
             setColors({
-                isGreen: nextRedState ? false : colors.isGreen,
-                isYellow: nextRedState ? false : colors.isYellow,
-                isRed: nextRedState
-              });
+              isGreen: nextRedState ? false : colors.isGreen,
+              isYellow: nextRedState ? false : colors.isYellow,
+              isRed: nextRedState,
+            });
           }}
         >
           <span role="img" aria-label="bomb">
@@ -40,10 +40,10 @@ const MyComponent = () => {
           onClick={() => {
             const nextGreenState = !colors.isGreen;
             setColors({
-                isGreen: nextGreenState,
-                isYellow: nextGreenState ? false : colors.isYellow,
-                isRed: nextGreenState ? false : colors.isRed
-              });
+              isGreen: nextGreenState,
+              isYellow: nextGreenState ? false : colors.isYellow,
+              isRed: nextGreenState ? false : colors.isRed,
+            });
           }}
         >
           <span role="img" aria-label="bomb">
@@ -57,7 +57,7 @@ const MyComponent = () => {
             setColors({
               isGreen: nextYellowState ? false : colors.isGreen,
               isYellow: nextYellowState,
-              isRed: nextYellowState ? false : colors.isRed
+              isRed: nextYellowState ? false : colors.isRed,
             });
           }}
         >
@@ -68,17 +68,17 @@ const MyComponent = () => {
       </div>
       <div>
         <pre
-            class="state-value"
-            data-state-value={`isRed: ${colors.isRed}`}
-          ></pre>
-          <pre
-            class="state-value"
-            data-state-value={`isGreen: ${colors.isGreen}`}
-          ></pre>
-          <pre
-            class="state-value"
-            data-state-value={`isYellow: ${colors.isYellow}`}
-          ></pre>
+          className="state-value"
+          data-state-value={`isRed: ${colors.isRed}`}
+        ></pre>
+        <pre
+          className="state-value"
+          data-state-value={`isGreen: ${colors.isGreen}`}
+        ></pre>
+        <pre
+          className="state-value"
+          data-state-value={`isYellow: ${colors.isYellow}`}
+        ></pre>
       </div>
     </div>
   );
