@@ -58,7 +58,7 @@ const MyAsyncWithContextComponent = () => {
               }}
             >
               <span role="img" aria-label="bomb">
-                💣 RED
+                💣 {status === "loading" ? "...Loading" : "RED"}
               </span>
             </button>
             <button
@@ -71,7 +71,7 @@ const MyAsyncWithContextComponent = () => {
               }}
             >
               <span role="img" aria-label="bomb">
-                💣 GREEN
+                💣 {status === "loading" ? "...Loading" : "GREEN"}
               </span>
             </button>
             <button
@@ -84,7 +84,7 @@ const MyAsyncWithContextComponent = () => {
               }}
             >
               <span role="img" aria-label="bomb">
-                💣 YELLOW
+                💣 {status === "loading" ? "...Loading" : "YELLOW"}
               </span>
             </button>
           </div>
