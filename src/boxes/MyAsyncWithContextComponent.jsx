@@ -35,7 +35,7 @@ const MyAsyncWithContextComponent = () => {
   }, [status]);
 
   return (
-    <FeatureContext.Provider value={colors}>
+    <FeatureContext.Provider value={state}>
       <div>
         <div
           className={
