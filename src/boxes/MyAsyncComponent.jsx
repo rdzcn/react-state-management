@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchAllColors } from "./helpers";
+import { fetchAllColors } from "../helpers";
 
 const MyAsyncComponent = () => {
   const [colors, setColors] = useState({

@@ -1,37 +1,33 @@
-import { createContext, useEffect, useState } from "react";
-import { fetchAllColors, sleep } from "./helpers";
-import DeepChild from "./components/deepChild/DeepChild";
+import { createContext, useEffect, useReducer, useState } from "react";
+import { fetchAllColors, sleep } from "../helpers";
+import DeepChild from "../components/deepChild/DeepChild";
+import Img from "../components/image/Img";
+import colorReducer, { COLOR_EVENTS } from "../reducers/color.reducer";
 
 export const FeatureContext = createContext(null);
 
 const MyAsyncWithContextComponent = () => {
   const [error, setError] = useState(false);
   const [isFetchingData, setIsFetchingData] = useState(false);
-  const [colors, setColors] = useState({});
+  const [colors, dispatch] = useReducer(colorReducer, {
+    isRed: false,
+    isGreen: false,
+    isYellow: false,
+  });
 
   const getAllColors = async () => {
-    const response = await fetchAllColors(1000);
+    const response = await fetchAllColors(4000);
+    setIsFetchingData(false);
     if (response.error) {
       setError(true);
       return {};
     }
-    return response.data;
+    dispatch({ type: COLOR_EVENTS.INITIAL_FETCH, data: response.data });
   };
 
   useEffect(() => {
     setIsFetchingData(true);
-    Promise.all([getAllColors()])
-      .then(([colors]) => {
-        setColors(colors);
-      })
-      .then(() => {
-        const start = new Date();
-        sleep(3000);
-        console.log("Takes", new Date() - start, " ms");
-      })
-      .finally(() => {
-        setIsFetchingData(false);
-      });
+    getAllColors();
   }, []);
 
   if (isFetchingData) {
@@ -59,20 +55,11 @@ const MyAsyncWithContextComponent = () => {
           >
             <div className="button-container">
               <DeepChild />
-              <img
-                className="the-way-of-water"
-                alt="profile-image"
-                src="https://i.pravatar.cc/100"
-              />
+              <Img />
               <button
                 type="button"
                 onClick={() => {
-                  const nextRedState = !colors.isRed;
-                  setColors({
-                    isGreen: nextRedState ? false : colors.isGreen,
-                    isYellow: nextRedState ? false : colors.isYellow,
-                    isRed: nextRedState,
-                  });
+                  dispatch({ type: COLOR_EVENTS.TOGGLE_COLOR, data: "isRed" });
                 }}
               >
                 <span role="img" aria-label="bomb">
@@ -82,11 +69,9 @@ const MyAsyncWithContextComponent = () => {
               <button
                 type="button"
                 onClick={() => {
-                  const nextGreenState = !colors.isGreen;
-                  setColors({
-                    isGreen: nextGreenState,
-                    isYellow: nextGreenState ? false : colors.isYellow,
-                    isRed: nextGreenState ? false : colors.isRed,
+                  dispatch({
+                    type: COLOR_EVENTS.TOGGLE_COLOR,
+                    data: "isGreen",
                   });
                 }}
               >
@@ -97,11 +82,9 @@ const MyAsyncWithContextComponent = () => {
               <button
                 type="button"
                 onClick={() => {
-                  const nextYellowState = !colors.isYellow;
-                  setColors({
-                    isGreen: nextYellowState ? false : colors.isGreen,
-                    isYellow: nextYellowState,
-                    isRed: nextYellowState ? false : colors.isRed,
+                  dispatch({
+                    type: COLOR_EVENTS.TOGGLE_COLOR,
+                    data: "isYellow",
                   });
                 }}
               >

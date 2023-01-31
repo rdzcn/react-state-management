@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { fetchFeatureConfig } from "../../helpers";
-import { FeatureContext } from "../../MyAsyncWithContextComponent";
+import { FeatureContext } from "../../boxes/MyAsyncWithContextComponent";
 
 export default function ChildLevel5() {
   const [error, setError] = useState(false);

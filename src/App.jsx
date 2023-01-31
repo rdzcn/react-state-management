@@ -1,8 +1,8 @@
-// import MyComponent from "./MyComponent";
-// import MyAsyncComponent from "./MyAsyncComponent";
-// import MyTwoAsyncComponent from "./MyTwoAsyncComponent";
+// import MyComponent from "./boxes/MyComponent";
+// import MyAsyncComponent from "./boxes/MyAsyncComponent";
+// import MyTwoAsyncComponent from "./boxes/MyTwoAsyncComponent";
 import "./App.css";
-import MyAsyncWithContextComponent from "./MyAsyncWithContextComponent";
+import MyAsyncWithContextComponent from "./boxes/MyAsyncWithContextComponent";
 
 export default function App() {
   return (

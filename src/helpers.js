@@ -25,6 +25,14 @@ export const fetchFeatureConfig = async (ms) => {
   };
 };
 
+export const fetchImageUrl = async (ms) => {
+  await delay(ms);
+  return {
+    data: "https://i.pravatar.cc/100",
+    error: false,
+  };
+};
+
 export const sleep = (ms) => {
   const date = Date.now();
   let currentDate = null;
