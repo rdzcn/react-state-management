@@ -20,8 +20,8 @@ export default function ChildLevel5() {
   useEffect(() => {
     setIsFetchingData(true);
     Promise.all([getFeature()])
-      .then(([colors]) => {
-        setFeature(colors);
+      .then(([feature]) => {
+        setFeature(feature);
       })
       .finally(() => {
         setIsFetchingData(false);
