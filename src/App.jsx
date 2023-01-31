@@ -8,7 +8,7 @@ export default function App() {
   return (
     <div className="App">
       <h1 style={{ marginBottom: "48px" }}>Hello State Management</h1>
-      <div class="components-container">
+      <div className="components-container">
         <MyTwoAsyncComponent />
         <MyAsyncWithContextComponent />
       </div>
