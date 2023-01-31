@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { fetchImageUrl } from "../../helpers";
 
 const placeholder = "https://via.placeholder.com/100";
 
-export default function Img() {
+export default memo(function Img() {
   const [src, setSrc] = useState("");
   const [error, setError] = useState(false);
 
@@ -29,4 +29,4 @@ export default function Img() {
       src={src || placeholder}
     />
   );
-}
+});
