@@ -5,6 +5,7 @@ export default function ChangeLog() {
       <ul className="change-log-list">
         <li className="change-log-item">Block the UI during the call</li>
         <li className="change-log-item">Bad user experience</li>
+        <li className="change-log-item">Add a second async call</li>
       </ul>
     </div>
   );
