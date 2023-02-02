@@ -12,7 +12,7 @@ export const FeatureContext = createContext(null);
 const MyAsyncWithContextComponent = () => {
   const [state, dispatch] = useReducer(colorReducer, initialState);
 
-  const { status, ...colors } = state;
+  const { status, colors } = state;
 
   const getAllColors = async () => {
     try {

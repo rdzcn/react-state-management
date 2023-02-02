@@ -5,31 +5,43 @@ export const COLOR_EVENTS = {
 };
 
 export const initialState = {
-  isRed: false,
-  isGreen: false,
-  isYellow: false,
+  colors: {
+    isRed: false,
+    isGreen: false,
+    isYellow: false,
+  },
   status: "idle",
 };
 
 const colorReducer = (state, event) => {
-  switch (event.type) {
-    case COLOR_EVENTS.INITIAL_FETCH:
-      return {
-        ...state,
-        status: "loading",
-      };
-    case COLOR_EVENTS.FETCH_RESOLVE:
-      return {
-        ...state,
-        ...event.data,
-        status: "success",
-      };
-    case COLOR_EVENTS.TOGGLE_COLOR:
-      if (state.status === "success") {
+  switch (state.status) {
+    case "idle":
+      if (event.type === COLOR_EVENTS.INITIAL_FETCH) {
         return {
-          ...initialState,
+          ...state,
+          status: "loading",
+        };
+      } else {
+        return state;
+      }
+    case "loading":
+      if (event.type === COLOR_EVENTS.FETCH_RESOLVE) {
+        return {
+          ...state,
+          colors: { ...event.data },
           status: "success",
-          [event.data]: !state[event.data],
+        };
+      } else {
+        return state;
+      }
+    case "success":
+      if (event.type === COLOR_EVENTS.TOGGLE_COLOR) {
+        return {
+          colors: {
+            ...initialState.colors,
+            [event.data]: !state.colors[event.data],
+          },
+          status: "success",
         };
       } else {
         return state;

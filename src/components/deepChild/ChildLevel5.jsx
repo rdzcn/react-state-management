@@ -5,7 +5,7 @@ import { FeatureContext } from "../../boxes/MyAsyncWithContextComponent";
 export default function ChildLevel5() {
   const [feature, setFeature] = useState({});
   const state = useContext(FeatureContext);
-  const { status, ...colors } = state;
+  const { status, colors } = state;
 
   const getFeature = async () => {
     const response = await fetchFeatureConfig(500);
