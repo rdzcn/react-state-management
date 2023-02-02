@@ -9,7 +9,7 @@ export default function ChildLevel5() {
   const colors = useContext(FeatureContext);
 
   const getFeature = async () => {
-    const response = await fetchFeatureConfig(500);
+    const response = await fetchFeatureConfig(5000);
     if (response.error) {
       setError(true);
       return {};
