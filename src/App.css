@@ -13,6 +13,27 @@
   align-items: center;
 }
 
+.App .change-log-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
+  background: #eee;
+}
+
+.App .change-log-list {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  margin: 0;
+}
+
+.App .change-log-list .change-log-item {
+  margin-bottom: 12px;
+  margin-left: 24px;
+  width: fit-content;
+}
+
 .App .my-component {
   width: 400px;
   height: 400px;
@@ -54,6 +75,6 @@
 
 .App .components-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 24px;
 }
