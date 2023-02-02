@@ -7,12 +7,12 @@ import colorReducer, {
   initialState,
 } from "../reducers/color.reducer";
 
-export const FeatureContext = createContext(null);
+export const FeatureContext = createContext({});
 
 const MyAsyncWithContextComponent = () => {
   const [state, dispatch] = useReducer(colorReducer, initialState);
 
-  const { status, ...colors } = state;
+  const { status, colors } = state;
 
   const getAllColors = async () => {
     try {

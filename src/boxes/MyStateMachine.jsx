@@ -1,4 +1,5 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
+import { useMachine, useInterpret, createActorContext } from "@xstate/react";
 import { fetchAllColors, sleep } from "../helpers";
 import DeepChild from "../components/deepChild/DeepChild";
 import Img from "../components/image/Img";
@@ -6,13 +7,17 @@ import colorReducer, {
   COLOR_EVENTS,
   initialState,
 } from "../reducers/color.reducer";
+import { colorMachine } from "../machines/colorMachine";
 
-export const FeatureContext = createContext(null);
+export const StateMachineContext = createContext({});
 
 const MyStateMachine = () => {
-  const [state, dispatch] = useReducer(colorReducer, initialState);
+  const [current, send] = useMachine(colorMachine);
+  const colorService = useInterpret(colorMachine);
 
-  const { status, ...colors } = state;
+  console.log("CURRENT MACHINE STATE", current);
+  console.log("color service", colorService);
+  const { status, colors = {} } = current.context || {};
 
   const getAllColors = async () => {
     try {
@@ -23,19 +28,23 @@ const MyStateMachine = () => {
     }
   };
 
+  // console.log("COLOR SERVICE, IN Component", colorService);
+
   useEffect(() => {
-    if (status === "idle") {
-      dispatch({ type: COLOR_EVENTS.INITIAL_FETCH });
+    if (current.value === "idle") {
+      // dispatch({ type: COLOR_EVENTS.INITIAL_FETCH });
+      send({ type: "FETCH" });
     }
-    if (status === "loading") {
+    if (current.value === "loading") {
       getAllColors().then((response) => {
-        dispatch({ type: COLOR_EVENTS.FETCH_RESOLVE, data: response });
+        // dispatch({ type: COLOR_EVENTS.FETCH_RESOLVE, data: response });
+        send({ type: "RESOLVE", data: response });
       });
     }
-  }, [status]);
+  }, [current.value]);
 
   return (
-    <FeatureContext.Provider value={state}>
+    <StateMachineContext.Provider value={current.context}>
       <div>
         <div
           className={
@@ -96,7 +105,7 @@ const MyStateMachine = () => {
           </pre>
         </div>
       </div>
-    </FeatureContext.Provider>
+    </StateMachineContext.Provider>
   );
 };
 

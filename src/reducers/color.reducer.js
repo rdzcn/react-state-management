@@ -5,9 +5,11 @@ export const COLOR_EVENTS = {
 };
 
 export const initialState = {
-  isRed: false,
-  isGreen: false,
-  isYellow: false,
+  colors: {
+    isRed: false,
+    isGreen: false,
+    isYellow: false,
+  },
   status: "idle",
 };
 
@@ -21,15 +23,17 @@ const colorReducer = (state, event) => {
     case COLOR_EVENTS.FETCH_RESOLVE:
       return {
         ...state,
-        ...event.data,
+        colors: { ...event.data },
         status: "success",
       };
     case COLOR_EVENTS.TOGGLE_COLOR:
       if (state.status === "success") {
         return {
-          ...initialState,
+          colors: {
+            ...initialState.colors,
+            [event.data]: !state.colors[event.data],
+          },
           status: "success",
-          [event.data]: !state[event.data],
         };
       } else {
         return state;
