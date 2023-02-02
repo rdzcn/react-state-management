@@ -14,20 +14,28 @@ export const initialState = {
 };
 
 const colorReducer = (state, event) => {
-  switch (event.type) {
-    case COLOR_EVENTS.INITIAL_FETCH:
-      return {
-        ...state,
-        status: "loading",
-      };
-    case COLOR_EVENTS.FETCH_RESOLVE:
-      return {
-        ...state,
-        colors: { ...event.data },
-        status: "success",
-      };
-    case COLOR_EVENTS.TOGGLE_COLOR:
-      if (state.status === "success") {
+  switch (state.status) {
+    case "idle":
+      if (event.type === COLOR_EVENTS.INITIAL_FETCH) {
+        return {
+          ...state,
+          status: "loading",
+        };
+      } else {
+        return state;
+      }
+    case "loading":
+      if (event.type === COLOR_EVENTS.FETCH_RESOLVE) {
+        return {
+          ...state,
+          colors: { ...event.data },
+          status: "success",
+        };
+      } else {
+        return state;
+      }
+    case "success":
+      if (event.type === COLOR_EVENTS.TOGGLE_COLOR) {
         return {
           colors: {
             ...initialState.colors,

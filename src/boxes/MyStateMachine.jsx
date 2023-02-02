@@ -24,7 +24,6 @@ const MyStateMachine = () => {
     }
   };
 
-  console.log(" CURRENT VALUE", current.value);
   useEffect(() => {
     if (current.value === "idle") {
       send({ type: "FETCH" });
