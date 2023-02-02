@@ -9,8 +9,6 @@ yarn install
 yarn dev
 ```
 
-You can progress through branches and observe the diffs. 
-
 ### Progress through branches
 
 - `git checkout main`
