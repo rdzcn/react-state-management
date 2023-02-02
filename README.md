@@ -11,7 +11,19 @@ yarn dev
 
 You can progress through branches and observe the diffs. 
 
-### TODO
+### Progress through branches
 
-- table of contents in terms of branch structure
+- `git checkout main`
+- `git checkout` starters-1..starters-4
+- `git checkout` async-1..async-4
+- `git checkout` reducer1..reducer2
+- `git checkout x-state-1`
 
+You can also compare branches with
+
+```
+eg: 
+
+git checkout starters-2
+git diff starters-1
+```
