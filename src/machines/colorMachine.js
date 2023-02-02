@@ -3,7 +3,13 @@ import { initialState } from "../reducers/color.reducer";
 
 const setInitialFetch = assign({
   colors: (context, event) => ({ ...context.colors, ...event.data }),
-  status: "success",
+});
+
+const toggleColor = assign({
+  colors: (context, event) => ({
+    ...initialState.colors,
+    [event.data]: !context.colors[event.data],
+  }),
 });
 
 export const colorMachine = createMachine({
@@ -31,7 +37,12 @@ export const colorMachine = createMachine({
       },
     },
     resolved: {
-      type: "final",
+      on: {
+        TOGGLE: {
+          actions: toggleColor,
+          target: "resolved",
+        },
+      },
     },
     rejected: {
       type: "final",

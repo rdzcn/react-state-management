@@ -13,11 +13,7 @@ export const StateMachineContext = createContext({});
 
 const MyStateMachine = () => {
   const [current, send] = useMachine(colorMachine);
-  const colorService = useInterpret(colorMachine);
-
-  console.log("CURRENT MACHINE STATE", current);
-  console.log("color service", colorService);
-  const { status, colors = {} } = current.context || {};
+  const { colors } = current.context;
 
   const getAllColors = async () => {
     try {
@@ -28,16 +24,13 @@ const MyStateMachine = () => {
     }
   };
 
-  // console.log("COLOR SERVICE, IN Component", colorService);
-
+  console.log(" CURRENT VALUE", current.value);
   useEffect(() => {
     if (current.value === "idle") {
-      // dispatch({ type: COLOR_EVENTS.INITIAL_FETCH });
       send({ type: "FETCH" });
     }
     if (current.value === "loading") {
       getAllColors().then((response) => {
-        // dispatch({ type: COLOR_EVENTS.FETCH_RESOLVE, data: response });
         send({ type: "RESOLVE", data: response });
       });
     }
@@ -63,37 +56,37 @@ const MyStateMachine = () => {
             <button
               type="button"
               onClick={() => {
-                dispatch({ type: COLOR_EVENTS.TOGGLE_COLOR, data: "isRed" });
+                send({ type: "TOGGLE", data: "isRed" });
               }}
             >
               <span role="img" aria-label="bomb">
-                💣 {status === "loading" ? "...Loading" : "RED"}
+                💣 {current.value === "loading" ? "...Loading" : "RED"}
               </span>
             </button>
             <button
               type="button"
               onClick={() => {
-                dispatch({
-                  type: COLOR_EVENTS.TOGGLE_COLOR,
+                send({
+                  type: "TOGGLE",
                   data: "isGreen",
                 });
               }}
             >
               <span role="img" aria-label="bomb">
-                💣 {status === "loading" ? "...Loading" : "GREEN"}
+                💣 {current.value === "loading" ? "...Loading" : "GREEN"}
               </span>
             </button>
             <button
               type="button"
               onClick={() => {
-                dispatch({
-                  type: COLOR_EVENTS.TOGGLE_COLOR,
+                send({
+                  type: "TOGGLE",
                   data: "isYellow",
                 });
               }}
             >
               <span role="img" aria-label="bomb">
-                💣 {status === "loading" ? "...Loading" : "YELLOW"}
+                💣 {current.value === "loading" ? "...Loading" : "YELLOW"}
               </span>
             </button>
           </div>
