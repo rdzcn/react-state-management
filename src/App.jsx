@@ -9,7 +9,6 @@ export default function App() {
       <h1 style={{ marginBottom: "48px" }}>Hello State Management</h1>
       <div className="components-container">
         <ChangeLog />
-        <MyComponent />
         <MyAsyncComponent />
       </div>
     </div>
