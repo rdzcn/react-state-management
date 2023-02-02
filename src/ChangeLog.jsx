@@ -3,9 +3,12 @@ export default function ChangeLog() {
     <div className="change-log-wrapper">
       <h4>Change log</h4>
       <ul className="change-log-list">
-        <li className="change-log-item">Block the UI during the call</li>
-        <li className="change-log-item">Bad user experience</li>
-        <li className="change-log-item">Add a second async call</li>
+        <li className="change-log-item">Loading spinner</li>
+        <li className="change-log-item">Implement Avatar</li>
+        <li className="change-log-item">
+          Pass color to some deep child using Context
+        </li>
+        <li className="change-log-item">Implement the feature</li>
       </ul>
     </div>
   );
