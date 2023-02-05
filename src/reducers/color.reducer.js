@@ -37,11 +37,11 @@ const colorReducer = (state, event) => {
     case "success":
       if (event.type === COLOR_EVENTS.TOGGLE_COLOR) {
         return {
+          ...state,
           colors: {
             ...initialState.colors,
             [event.data]: !state.colors[event.data],
           },
-          status: "success",
         };
       } else {
         return state;
